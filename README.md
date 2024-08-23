@@ -21,6 +21,9 @@ ANN search done in elastic_ann.py
 
 # Prerequisites
 Docker
+
 Python 3.8+
+
 Elasticsearch 8.x
+
 SingleStore 8.x

@@ -25,9 +25,13 @@ def nrandv1536():
 # Script to populate an elasticsearch index with vectors
 
 index_name = 'video_game_embeddings'
+response = es.count(index=index_name)
+print("Number of documents:", response['count'])
+starting_point = response['count']
+
 
 def generate_documents(num_docs):
-    for i in range(1, num_docs + 1):
+    for i in range(starting_point+1, starting_point + num_docs):
         yield {
             "_index": index_name,
             "_id": i,
@@ -38,5 +42,7 @@ def generate_documents(num_docs):
         }
 
 # Insert vectors into Elasticsearch
-num_docs = 10000000  # Adjust the number of documents as needed
+num_docs = 60975  # Adjust the number of documents as needed
 bulk(es, generate_documents(num_docs))
+
+print("done")   
